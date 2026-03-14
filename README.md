@@ -1,63 +1,69 @@
+[한국어](README.ko.md) · [English](README.md) · [中文](README.zh.md)
+
+---
+
 # miniclaw
 
-텔레그램 AI 봇. OpenAI로 일반 답변, 프리셋(키워드→고정 답변), 스킬 문서(.md)를 지원합니다.
+A Telegram AI bot. It uses OpenAI for general replies, presets (keyword → fixed reply), and skill docs (.md).
 
-## 요구 사항
+## Requirements
 
 - Python 3.12+
-- `.env`에 `TELEGRAM_BOT_TOKEN`, `OPENAI_API_KEY` 설정
+- Set `TELEGRAM_BOT_TOKEN` and `OPENAI_API_KEY` in `.env`
 
-## 설치
+## Install
 
 ```bash
 pip install -r requirements.txt
-cp .env.example .env   # 실제 토큰/키 입력
+cp .env.example .env   # Fill in your tokens/keys
 ```
 
-개발 시 (pre-commit, ruff):
+For development (pre-commit, ruff, commit message convention):
 
 ```bash
 pip install -r requirements-dev.txt
 pre-commit install
 ```
 
-## 실행
+Commits must follow [Conventional Commits](https://www.conventionalcommits.org/) (see [docs/COMMIT_CONVENTION.md](docs/COMMIT_CONVENTION.md)), e.g. `feat(bot): add command`, `fix: avoid recursion`.
 
-- **텔레그램 봇**: `python telegram_ai_bot.py`
-- **더미 모드** (텔레그램 없이 터미널에서 테스트): `python dummy_run.py`
+## Run
 
-## 명령어 (모두 `/` 로 시작)
+- **Telegram bot**: `python telegram_ai_bot.py`
+- **Dummy mode** (test in terminal without Telegram): `python dummy_run.py`
 
-| 명령 | 설명 |
-|------|------|
-| `/help` | 명령 목록 |
-| `/help 명령이름` | 해당 명령 상세 사용법 |
-| `/updatepreset 키: 값` | 프리셋 추가·덮어쓰기 (키 있으면 예/아니오) |
-| `/skills` | 스킬 사용법 문서 보기 |
-| `/skills 이름` | 해당 스킬 .md 내용 보기 |
-| `/addskills` | 새 스킬 추가 (이후 채팅으로 이름 → 설명 입력) |
-| `/skill list` | 스킬 목록 |
-| `/skill remove 이름` | 스킬 삭제 |
+## Commands (all start with `/`)
 
-일반 메시지는 프리셋에 있으면 그대로 답하고, 없으면 OpenAI로 답합니다.
+| Command | Description |
+|---------|-------------|
+| `/help` | List commands |
+| `/help command` | Detailed usage for that command |
+| `/updatepreset key: value` | Add or overwrite preset (prompts yes/no if key exists) |
+| `/skills` | Show skills usage doc |
+| `/skills name` | Show content of that skill .md |
+| `/addskills` | Add new skill (then send name → description in chat) |
+| `/skill list` | List skills |
+| `/skill remove name` | Remove skill |
 
-## 디렉터리 구조
+Regular messages are answered from presets when matched; otherwise the bot uses OpenAI.
+
+## Directory structure
 
 ```
 miniclaw/
-  telegram_ai_bot.py   # 봇 진입점
-  dummy_run.py         # 텔레그램 없이 입력→응답 테스트
+  telegram_ai_bot.py   # Bot entrypoint
+  dummy_run.py         # Input→reply test without Telegram
   asset/
-    presets.py         # 프리셋 DB (JSON)
+    presets.py         # Preset DB (JSON)
     presets.json
-    skill_db.py        # 스킬 .md 읽기/쓰기
-    skills/            # 스킬 마크다운 문서
-      README.md        # /skills 시 표시
+    skill_db.py        # Skill .md read/write
+    skills/            # Skill markdown docs
+      README.md        # Shown for /skills
   .env.example
   requirements.txt
   ruff.toml, .pre-commit-config.yaml
 ```
 
-## 라이선스
+## License
 
-LICENSE 파일 참고.
+See LICENSE file.

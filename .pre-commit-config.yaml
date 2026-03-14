@@ -14,3 +14,13 @@ repos:
       - id: check-yaml
       - id: check-added-large-files
         args: [--maxkb=1000]
+
+  # Conventional Commits (OpenClaw-style), see docs/COMMIT_CONVENTION.md
+  - repo: local
+    hooks:
+      - id: commit-msg-conventional
+        name: commit message (Conventional Commits)
+        entry: python scripts/validate_commit_msg.py
+        language: system
+        stages: [commit-msg]
+        pass_filenames: true

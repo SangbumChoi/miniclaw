@@ -1,5 +1,13 @@
 # miniclaw — Claude용 프로젝트 요약
 
+## README 다국어
+
+- **English**: [README.md](README.md) (기본, default)
+- **한국어**: [README.ko.md](README.ko.md)
+- **中文**: [README.zh.md](README.zh.md)
+
+각 README 상단에 언어 전환 링크가 있어, 링크로 해당 언어 페이지로 이동할 수 있음. 내용 수정 시 세 파일을 모두 맞춰 주는 것이 좋음.
+
 ## 개요
 
 텔레그램 봇 + OpenAI. 사용자 메시지를 프리셋(키→고정 답변) 또는 스킬 문서(.md)로 처리하고, 없으면 OpenAI로 응답합니다.
@@ -14,6 +22,7 @@
 
 ## 규칙·관례
 
+- **커밋 메시지**: [Conventional Commits](https://www.conventionalcommits.org/) (OpenClaw와 동일). `feat:`, `fix:`, `docs:` 등 타입 필수, 선택적 scope. pre-commit의 commit-msg 훅이 검사. 자세한 규칙은 [docs/COMMIT_CONVENTION.md](docs/COMMIT_CONVENTION.md).
 - **명령은 모두 `/` 로 시작**: `/help`, `/updatepreset`, `/skills`, `/addskills`, `/skill` 등.
 - **설정·비밀**: `.env`에 `TELEGRAM_BOT_TOKEN`, `OPENAI_API_KEY`. `.env`는 `.gitignore`에 있음.
 - **에셋**:
